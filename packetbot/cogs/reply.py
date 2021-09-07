@@ -1,3 +1,4 @@
+from discord.ext import commands
 import discord
 
 class Reply(commands.Cog):
