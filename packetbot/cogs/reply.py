@@ -1,6 +1,6 @@
 import discord
 
-class Reply(discordClient):
+class Reply:
     def __init__(self, discordClient):
         self.discordClient = discordClient
 
