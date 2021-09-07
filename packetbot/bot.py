@@ -13,12 +13,12 @@ discordClient = discord.Client
 async def on_ready():
     logging.info(f"Bot logado como {bot.user.name}")
 
-COGS = [music.Music, error.CommandErrorHandler, meta.Meta, tips.Tips]
+COGS = [music.Music, error.CommandErrorHandler, meta.Meta, tips.Tips, reply.Reply]
 
 def add_cogs(bot):
     for cog in COGS:
         bot.add_cog(cog(bot, cfg))
-    bot.add_cog(reply.Reply(discordClient))
+    #bot.add_cog(reply.Reply(discordClient))
 
 def run():
     add_cogs(bot)
