@@ -1,0 +1,14 @@
+[Unit]
+Description=Packet Bot
+After=multi-user.target
+
+[Service]
+Type=idle
+Restart=always
+User=packetbot
+WorkingDirectory=/var/packetbot/bot
+ExecStart=/usr/bin/python3 -m packetbot 2>&1
+#StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target

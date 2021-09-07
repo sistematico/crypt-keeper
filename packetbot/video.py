@@ -8,7 +8,6 @@ YTDL_OPTS = {
     "extract_flat": "in_playlist"
 }
 
-
 class Video:
     """Class containing information about a particular video."""
 
@@ -21,8 +20,7 @@ class Video:
             self.video_url = video["webpage_url"]
             self.title = video["title"]
             self.uploader = video["uploader"] if "uploader" in video else ""
-            self.thumbnail = video[
-                "thumbnail"] if "thumbnail" in video else None
+            self.thumbnail = video["thumbnail"] if "thumbnail" in video else None
             self.requested_by = requested_by
 
     def _get_info(self, video_url):
