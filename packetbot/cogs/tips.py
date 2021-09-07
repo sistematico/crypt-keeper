@@ -2,7 +2,6 @@ from discord.ext import commands
 import discord
 import random
 
-
 class Tips(commands.Cog):
     """Commands for providing tips about using the bot."""
 

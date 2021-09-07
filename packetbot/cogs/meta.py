@@ -3,7 +3,6 @@ import discord
 from datetime import datetime
 from .. import util
 
-
 class Meta(commands.Cog):
     """Commands relating to the bot itself."""
 
@@ -17,5 +16,4 @@ class Meta(commands.Cog):
         """Tells how long the bot has been running."""
         uptime_seconds = round(
             (datetime.now() - self.start_time).total_seconds())
-        await ctx.send(f"Tempo online: {util.format_seconds(uptime_seconds)}"
-                       )
+        await ctx.send(f"Tempo online: {util.format_seconds(uptime_seconds)}")
