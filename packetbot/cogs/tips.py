@@ -9,11 +9,13 @@ class Tips(commands.Cog):
     def __init__(self, bot, config):
         self.bot = bot
         self.config = config[__name__.split(".")[-1]]
-        self.tips = ["Only admins and the song requester can immediately skip songs. Everybody else will have to vote!",
-                     f"You can check out my source code here: {self.config['github_url']}"]
+        self.tips = [
+            "Somente admins podem pular as músicas imediatamente. Todos os outros precisam votar!",
+            f"Você pode achar meu código fonte em: {self.config['github_url']}"
+        ]
 
     @commands.command()
     async def tip(self, ctx):
         """Get a random tip about using the bot."""
         index = random.randrange(len(self.tips))
-        await ctx.send(f"**Tip #{index+1}:** {self.tips[index]}")
+        await ctx.send(f"**Dica #{index+1}:** {self.tips[index]}")

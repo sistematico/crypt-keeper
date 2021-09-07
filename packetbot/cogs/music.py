@@ -33,8 +33,7 @@ async def in_voice_channel(ctx):
     if voice and bot_voice and voice.channel and bot_voice.channel and voice.channel == bot_voice.channel:
         return True
     else:
-        raise commands.CommandError(
-            "You need to be in the channel to do that.")
+        raise commands.CommandError("Você precisa estar em um canal de voz para isso.")
 
 
 async def is_audio_requester(ctx):
@@ -144,10 +143,10 @@ class Music(commands.Cog):
             required_votes = math.ceil(
                 self.config["vote_skip_ratio"] * users_in_channel)
             await ctx.send(
-                f"{ctx.author.mention} voted to skip ({len(state.skip_votes)}/{required_votes} votes)"
+                f"{ctx.author.mention} votaram para pular a música com ({len(state.skip_votes)}/{required_votes} votos)"
             )
         else:
-            raise commands.CommandError("Sorry, vote skipping is disabled.")
+            raise commands.CommandError("Desculpe, a opção de pular a música está desabilitada.")
 
     def _vote_skip(self, channel, member):
         """Register a vote for `member` to skip the song playing."""
@@ -199,9 +198,9 @@ class Music(commands.Cog):
     def _queue_text(self, queue):
         """Returns a block of text describing a given song queue."""
         if len(queue) > 0:
-            message = [f"{len(queue)} songs in queue:"]
+            message = [f"{len(queue)} músicas na fila:"]
             message += [
-                f"  {index+1}. **{song.title}** (requested by **{song.requested_by.name}**)"
+                f"  {index+1}. **{song.title}** (Música pedida por **{song.requested_by.name}**)"
                 for (index, song) in enumerate(queue)
             ]  # add individual songs
             return "\n".join(message)
@@ -244,13 +243,11 @@ class Music(commands.Cog):
             try:
                 video = Video(url, ctx.author)
             except youtube_dl.DownloadError as e:
-                logging.warn(f"Error downloading video: {e}")
-                await ctx.send(
-                    "There was an error downloading your video, sorry.")
+                logging.warn(f"Erro ao baixar o vídeo: {e}")
+                await ctx.send("Houve um erro ao baixar seu vídeo, desculpe.")
                 return
             state.playlist.append(video)
-            message = await ctx.send(
-                "Added to queue.", embed=video.get_embed())
+            message = await ctx.send("Adicionada a fila.", embed=video.get_embed())
             await self._add_reaction_controls(message)
         else:
             if ctx.author.voice is not None and ctx.author.voice.channel is not None:
@@ -258,17 +255,15 @@ class Music(commands.Cog):
                 try:
                     video = Video(url, ctx.author)
                 except youtube_dl.DownloadError as e:
-                    await ctx.send(
-                        "There was an error downloading your video, sorry.")
+                    await ctx.send("Houve um erro ao baixar seu vídeo, desculpe.")
                     return
                 client = await channel.connect()
                 self._play_song(client, state, video)
                 message = await ctx.send("", embed=video.get_embed())
                 await self._add_reaction_controls(message)
-                logging.info(f"Now playing '{video.title}'")
+                logging.info(f"Tocando agora '{video.title}'")
             else:
-                raise commands.CommandError(
-                    "You need to be in a voice channel to do that.")
+                raise commands.CommandError("Você precisa estar em um canal de voz para isso.")
 
     async def on_reaction_add(self, reaction, user):
         """Respods to reactions added to the bot's messages, allowing reactions to control playback."""
@@ -309,7 +304,7 @@ class Music(commands.Cog):
                     required_votes = math.ceil(
                         self.config["vote_skip_ratio"] * users_in_channel)
                     await channel.send(
-                        f"{user.mention} voted to skip ({len(state.skip_votes)}/{required_votes} votes)"
+                        f"{user.mention} votaram para pular a música com ({len(state.skip_votes)}/{required_votes} votos)"
                     )
 
     async def _add_reaction_controls(self, message):
