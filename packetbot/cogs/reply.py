@@ -2,11 +2,9 @@ from discord.ext import commands
 import discord
 import random
 
-client = discord.Client()
-
-class Reply(client):
-    def __init__(self, bot, config, client):
-        self.client = client
+class Reply:
+    def __init__(self, bot, config):
+        self.client = discord.Client()
         self.bot = bot
         self.config = config[__name__.split(".")[-1]]
         self.saudacoes = ["Olá", "Oi"]
