@@ -5,13 +5,12 @@ class AutoReply(commands.Cog):
     def __init__(self, bot, config):
         self.bot = bot
         self.config = config
-        #self.config = config[__name__.split(".")[-1]]
 
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author == self.bot:
             return
 
-        if message.content.startswith('$hello'):
+        if message.content.lower().startswith('oi'):
             await message.channel.send('Hello World!')
-        await bot.process_commands(message)
+        await self.bot.process_commands(message)
