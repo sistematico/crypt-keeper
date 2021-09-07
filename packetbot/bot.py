@@ -7,16 +7,18 @@ from . import config
 
 cfg = config.load_config()
 bot = commands.Bot(command_prefix=cfg["prefix"])
+discordClient = discord.Client
 
 @bot.event
 async def on_ready():
     logging.info(f"Bot logado como {bot.user.name}")
 
-COGS = [music.Music, error.CommandErrorHandler, meta.Meta, tips.Tips, reply.Reply]
+COGS = [music.Music, error.CommandErrorHandler, meta.Meta, tips.Tips]
 
 def add_cogs(bot):
     for cog in COGS:
         bot.add_cog(cog(bot, cfg))
+    bot.add_cog(reply.Reply(discordClient))
 
 def run():
     add_cogs(bot)
