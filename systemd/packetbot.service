@@ -7,7 +7,7 @@ Type=idle
 Restart=always
 User=packetbot
 WorkingDirectory=/var/packetbot/bot
-ExecStart=/usr/bin/python3 -m packetbot 2>&1
+ExecStart=/usr/local/bin/pipenv run python3 -m packetbot 2>&1
 #StandardInput=tty-force
 
 [Install]
