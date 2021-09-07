@@ -1,11 +1,12 @@
-from discord.ext import commands
+#from discord.ext import commands
 import discord
-import random
+#import random
 
-class Reply:
-    def __init__(self, bot, config):
+class Reply(discord.Client):
+    #def __init__(self, bot, config):
+    def __init__(self, config):
         self.client = discord.Client()
-        self.bot = bot
+        #self.bot = bot
         self.config = config[__name__.split(".")[-1]]
         self.saudacoes = ["Olá", "Oi"]
 
