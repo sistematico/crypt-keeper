@@ -16,7 +16,6 @@ See https://stackoverflow.com/questions/43218292/youtubedl-read-error-with-disco
 Also, https://ffmpeg.org/ffmpeg-protocols.html for command line option reference.
 """
 
-
 async def audio_playing(ctx):
     """Checks that audio is currently playing before continuing."""
     client = ctx.guild.voice_client
@@ -231,7 +230,7 @@ class Music(commands.Cog):
         else:
             raise commands.CommandError("You must use a valid index.")
 
-    @commands.command(brief="Plays audio from <url>.")
+    @commands.command(brief="Plays audio from <url>.", aliases=["yt", "youtube", "tocar", "toca"])
     @commands.guild_only()
     async def play(self, ctx, *, url):
         """Plays audio hosted at <url> (or performs a search for <url> and plays the first result)."""
