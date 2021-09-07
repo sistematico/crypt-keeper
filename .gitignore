@@ -109,3 +109,4 @@ config.toml
 
 # .vscode editor files
 .vscode
+.commit
