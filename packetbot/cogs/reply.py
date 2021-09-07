@@ -2,23 +2,16 @@
 import discord
 #import random
 
-class Reply(discord.Client):
-    #def __init__(self, bot, config):
-    def __init__(self, config):
-        self.client = discord.Client()
-        #self.bot = bot
-        self.config = config[__name__.split(".")[-1]]
-        self.saudacoes = ["Olá", "Oi"]
+discordClient = discord.Client
 
-    @client.event
-    async def on_message(message):
-        if message.author == client.user:
+class Reply(discordClient):
+    async def on_message(self, message):
+        if message.author == self.user:
             return
-        
-        if message.content == 'oi':
-            await message.send("Oiii")
-            #await message.channel.send(' aaaaa ')
-        await client.process_commands(message)
+
+        if message.content.startswith('$hello'):
+            await message.channel.send('Hello World!')
+        await discordClient.process_commands(message)
 
     # @commands.command()
     # async def tip(self, ctx):
