@@ -11,6 +11,6 @@ class AutoReply(commands.Cog):
         if message.author == self.bot:
             return
 
-        if message.content.lower().startswith('oi'):
-            await message.channel.send('Hello World!')
+        if message.content.startswith('oi'):
+            await message.channel.send('Aloha!')
         #await self.bot.process_commands(message)
