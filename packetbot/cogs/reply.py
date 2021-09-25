@@ -37,7 +37,7 @@ class Reply(commands.Cog):
             return
 
         if any(x in message.content.lower() for x in ['frase do dia', 'frases do dia']):
-            frase = self.random_line(confucio)
+            frase = self.random_line(self.confucio)
             await message.channel.send(frase)
             return
 
