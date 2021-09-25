@@ -1,6 +1,7 @@
 # import discord.py's command extension module
 # see the documentation: https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#
 from discord.ext import commands
+import random
 
 # made Reply subclass commands.Cog
 class Reply(commands.Cog):
@@ -17,7 +18,17 @@ class Reply(commands.Cog):
         if message.author == self.bot.user:
             return
 
-        if message.content.startswith('$hello'):
+        if message.content.startswith('!'):
+            return
+
+        if 'olá' in message.content.lower():
+            await message.channel.send(random.choice([
+                'Olá!', 
+                'Oi, tudo bom?', 
+                'E aí! Blza?'
+            ]))            
+
+        if message.content.startswith('hello'):
             await message.channel.send('Hello World!')
 
         # use self.bot instead of self.client
