@@ -37,15 +37,17 @@ class Reply(commands.Cog):
             return
 
         if any(x in message.content.lower() for x in ['frase do dia', 'frases do dia']):
-            frase = random_line(confucio)
-            await message.channel.send(frase) 
+            frase = self.random_line(confucio)
+            await message.channel.send(frase)
+            return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             await message.channel.send(random.choice([
                 '{0.author} Olá!', 
                 '{0.name} Oi, tudo bom?', 
                 '{0.author} E aí! Blza?'
-            ]).format(message)) 
+            ]).format(message))
+            return
 
         # if 'olá' in message.content.lower():
         #     await message.channel.send(random.choice([
@@ -54,8 +56,9 @@ class Reply(commands.Cog):
         #         'E aí! Blza?'
         #     ]))            
 
-        if message.content.startswith('hello'):
-            await message.channel.send('Hello World!')
+        # if message.content.startswith('hello'):
+        #     await message.channel.send('Hello World!')
+        #     return
 
         # use self.bot instead of self.client
         await self.bot.process_commands(message)
