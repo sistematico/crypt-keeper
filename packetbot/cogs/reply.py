@@ -1,11 +1,5 @@
-# import discord.py's command extension module
-# see the documentation: https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#
 from discord.ext import commands
 import random
-
-# with open('quotes.txt', encoding='utf8') as f:
-#     for line in f:
-#         print(line.strip())
 
 # made Reply subclass commands.Cog
 class Reply(commands.Cog):
@@ -25,15 +19,15 @@ class Reply(commands.Cog):
         if message.content.startswith('!'):
             return
 
-        if any(x in message.content.lower() for x in ['frase do dia', 'frases do dia']):
+        if any(x in message.content.lower() for x in ['frase do dia']):
             await message.channel.send(random.choice(list(open('txt/confucio.txt','r'))))
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             await message.channel.send(random.choice([
-                '{0.author} Olá!', 
-                '{0.name} Oi, tudo bom?', 
-                '{0.author} E aí! Blza?'
+                '@{0.author} Olá!', 
+                '@{0.name} Oi, tudo bom?', 
+                '@{0.author} E aí! Blza?'
             ]).format(message))
             return
 
