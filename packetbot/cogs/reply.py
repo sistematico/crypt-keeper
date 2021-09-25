@@ -9,17 +9,6 @@ import random
 
 # made Reply subclass commands.Cog
 class Reply(commands.Cog):
-
-    confucio = open('txt/confucio.txt','r')
-
-    def random_line(afile):
-        line = next(afile)
-        for num, aline in enumerate(afile, 2):
-            if random.randrange(num):
-                continue
-            line = aline
-        return line
-
     # Cogs must take the Bot and a config dict as arguments,
     # based on the way I have set things up in bot.py
     def __init__(self, bot, config):
@@ -37,8 +26,7 @@ class Reply(commands.Cog):
             return
 
         if any(x in message.content.lower() for x in ['frase do dia', 'frases do dia']):
-            frase = self.random_line(self.confucio)
-            await message.channel.send(frase)
+            await message.channel.send(random.choice(list(open('txt/confucio.txt','r'))))
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
@@ -50,15 +38,7 @@ class Reply(commands.Cog):
             return
 
         # if 'olá' in message.content.lower():
-        #     await message.channel.send(random.choice([
-        #         'Olá!', 
-        #         'Oi, tudo bom?', 
-        #         'E aí! Blza?'
-        #     ]))            
-
         # if message.content.startswith('hello'):
-        #     await message.channel.send('Hello World!')
-        #     return
 
         # use self.bot instead of self.client
         await self.bot.process_commands(message)
