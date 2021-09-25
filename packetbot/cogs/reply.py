@@ -3,8 +3,23 @@
 from discord.ext import commands
 import random
 
+# with open('quotes.txt', encoding='utf8') as f:
+#     for line in f:
+#         print(line.strip())
+
 # made Reply subclass commands.Cog
 class Reply(commands.Cog):
+
+    confucio = open('txt/confucio.txt','r')
+
+    def random_line(afile):
+        line = next(afile)
+        for num, aline in enumerate(afile, 2):
+            if random.randrange(num):
+                continue
+            line = aline
+        return line
+
     # Cogs must take the Bot and a config dict as arguments,
     # based on the way I have set things up in bot.py
     def __init__(self, bot, config):
@@ -21,12 +36,23 @@ class Reply(commands.Cog):
         if message.content.startswith('!'):
             return
 
-        if 'olá' in message.content.lower():
+        if any(x in message.content.lower() for x in ['frase do dia', 'frases do dia']):
+            frase = random_line(confucio)
+            await message.channel.send(frase) 
+
+        if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             await message.channel.send(random.choice([
-                'Olá!', 
-                'Oi, tudo bom?', 
-                'E aí! Blza?'
-            ]))            
+                '{0.author} Olá!', 
+                '{0.name} Oi, tudo bom?', 
+                '{0.author} E aí! Blza?'
+            ]).format(message)) 
+
+        # if 'olá' in message.content.lower():
+        #     await message.channel.send(random.choice([
+        #         'Olá!', 
+        #         'Oi, tudo bom?', 
+        #         'E aí! Blza?'
+        #     ]))            
 
         if message.content.startswith('hello'):
             await message.channel.send('Hello World!')
