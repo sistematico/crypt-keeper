@@ -2,7 +2,7 @@ import discord
 import logging
 import sys
 from discord.ext import commands
-from .cogs import music, error, meta, tips, autoreply
+from .cogs import music, error, meta, tips, reply
 from . import config
 
 cfg = config.load_config()
@@ -12,7 +12,7 @@ bot = commands.Bot(command_prefix=cfg["prefix"])
 async def on_ready():
     logging.info(f"Bot logado como {bot.user.name}")
 
-COGS = [music.Music, error.CommandErrorHandler, meta.Meta, tips.Tips, autoreply.AutoReply]
+COGS = [music.Music, error.CommandErrorHandler, meta.Meta, tips.Tips, reply.Reply]
 
 def add_cogs(bot):
     for cog in COGS:
