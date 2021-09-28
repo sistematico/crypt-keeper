@@ -9,12 +9,14 @@ class Util(commands.Cog):
         if message.author == self.bot.user:
             return
 
-        if message.content == '@clear all':
+        if message.content.startswith('@cls'):
+            await message.channel.send("{message.user.mention} você precisa de permissões para apagar as mensagens em massa.".format(message))
+            
             if message.author.permissions_in(message.channel).manage_messages:
                 deleted = await message.channel.purge(limit=100, check=lambda msg: not msg.pinned)
                 await message.channel.send('100 mensagens foram apagadas.'.format(deleted))
             elif not message.author.permissions_in(message.channel).manage_messages:
-                await message.channel.send("{0.author} você precisa de permissões para apagar as mensagens em massa.".format(message))
+                await message.channel.send("{message.user.mention} você precisa de permissões para apagar as mensagens em massa.".format(message))
             
             return
 

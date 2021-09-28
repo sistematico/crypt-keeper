@@ -5,7 +5,7 @@
 Um bot simples, não intrusivo para tocar músicas e fazer algumas outras coisas em servidores de discord.
 Este bot utiliza a biblioteca Discord.py, YoutubeDL e ffmpeg. Use `ajuda` para receber uma lista de comandos!
 
-## Getting started
+## Começando
 If you just want to get up and running with the bot quickly:
 
 1. Clone this repository using the GitHub website or GitHub/git CLI.
@@ -16,7 +16,7 @@ If you just want to get up and running with the bot quickly:
 6. Use something like the [Discord API Permissions calculator](https://discordapi.com/permissions.html) to generate an invite link and invite your bot to your server, if necessary.
 7. Run the bot using `python -m packetbot`.
 
-## Additional Dependencies
+## Dependências adicionais
 
 Make sure that [pipenv](https://pipenv.pypa.io/en/latest/) is installed. Navigate to the project directory, and run `pipenv install` to install the Python dependencies.
 
@@ -24,7 +24,7 @@ To allow for streaming of media, make sure `opus` and `ffmpeg` are installed and
 
 To run the bot, activate the virtual environment with `pipenv shell` and then `python -m packetbot` to start the bot.
 
-## Configuring
+## Configurando
 
 When you run the bot for the first time, a default configuration file will be generated called `config.toml`. You can enter that file and add your token, etc. The default file looks like this:
 
@@ -43,7 +43,7 @@ When you run the bot for the first time, a default configuration file will be ge
 
 If you ever wish to restore the bot to default configuration, you can simply delete (or rename) your config file. A new one will be generated upon startup.
 
-## Commands
+## Comandos
 From the bot's `help` command:
 ```
 Meta:
