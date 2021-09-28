@@ -1,4 +1,4 @@
 audio/*
 imagens/*
-!.gitkeep
-!.gitignore
+!imagens/.gitkeep
+!audio/.gitignore
