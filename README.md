@@ -2,7 +2,8 @@
 
 ![PacketBot](https://raw.githubusercontent.com/sistematico/packetbot/main/assets/img/terminator.jpg "T-800")
 
-A simple, unintrusive musicbot written in Discord.py that utilizes YoutubeDL and ffmpeg to stream audio. Use the `help` command to get a list of commands!
+Um bot simples, não intrusivo para tocar músicas e fazer algumas outras coisas em servidores de discord.
+Este bot utiliza a biblioteca Discord.py, YoutubeDL e ffmpeg. Use `ajuda` para receber uma lista de comandos!
 
 ## Getting started
 If you just want to get up and running with the bot quickly:

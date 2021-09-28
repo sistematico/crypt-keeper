@@ -22,7 +22,7 @@ class Reply(commands.Cog):
         if message.content.startswith('!'):
             return
 
-        if any(x in message.content.lower() for x in ['frase do dia']) or if message.content.startswith('@frase'):
+        if any(x in message.content.lower() for x in ['frase do dia']) or message.content.startswith('@frase'):
             await message.channel.send("{message.author.id} {message.author.name}".format(message))
             frase_do_dia = random.choice(list(open('txt/confucio.txt','r')))
             #await message.channel.send("{0.author.name} {frase_do_dia}".format(message))
