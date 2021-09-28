@@ -350,7 +350,7 @@ class Music(commands.Cog):
             client = await channel.connect()
 
             try:
-                source = discord.FFmpegPCMAudio('audio/' + str(arquivo) + '.mp3')
+                source = discord.FFmpegPCMAudio('uploads/audio/' + str(arquivo) + '.mp3')
                 client.play(source)
             except IOError:
                 await ctx.send(str(ctx.author.name) + f" o arquivo {arquivo} é inválido.")
