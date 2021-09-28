@@ -111,5 +111,6 @@ config.toml
 .vscode
 .commit
 
-/uploads/
-!/uploads/.gitkeep
+uploads/
+!**/.gitkeep
+!**/.gitignore
