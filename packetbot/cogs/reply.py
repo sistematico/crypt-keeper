@@ -20,7 +20,7 @@ class Reply(commands.Cog):
             frase = random.choice(list(open('txt/frases.txt','r')))
             #await message.channel.send(message.author.id)
             #await message.channel.send(message.author.name)
-            await message.channel.send("<@{message.author.id}> {frase}".format(message))
+            await message.channel.send("<@" + message.author.id + "> " + frase)
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
