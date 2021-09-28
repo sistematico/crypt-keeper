@@ -112,6 +112,11 @@ config.toml
 .commit
 
 uploads/*
+uploads/audio/*
+uploads/imagens/*
 
-!**/*.gitkeep
 !.gitignore
+
+!.gitkeep
+!uploads/audio/.gitkeep
+!uploads/imagens/.gitkeep

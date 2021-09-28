@@ -1,4 +1,0 @@
-audio/*
-imagens/*
-!imagens/.gitkeep
-!audio/.gitignore
