@@ -25,12 +25,12 @@ class Reply(commands.Cog):
         if any(x in message.content.lower() for x in ['frase do dia']):
             await ctx.send(f"hello, {ctx.author.name}")
             frase_do_dia = random.choice(list(open('txt/confucio.txt','r')))
-            await message.channel.send("{0.author.name} {frase_do_dia}".format(message, frase_do_dia))
+            await message.channel.send("{0.author} {frase_do_dia}".format(message))
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             saudacao = random.choice(['Olá!', 'Oi, tudo bom?', 'E aí! Blza?'])
-            await message.channel.send("{0.author.name} {0.mention} {0.user.name} {saudacao}".format(message))
+            await message.channel.send("{0.author} {saudacao}".format(message))
             return
 
         # if 'olá' in message.content.lower():
