@@ -22,7 +22,7 @@ async def audio_playing(ctx):
     if client and client.channel and client.source:
         return True
     else:
-        raise commands.CommandError("Not currently playing any audio.")
+        raise commands.CommandError("O bot não está tocando nenhum audio.")
 
 
 async def in_voice_channel(ctx):
@@ -43,8 +43,7 @@ async def is_audio_requester(ctx):
     if permissions.administrator or state.is_requester(ctx.author):
         return True
     else:
-        raise commands.CommandError(
-            "You need to be the song requester to do that.")
+        raise commands.CommandError("Você precisa ser a pessoa que pediu a música para fazer isto.")
 
 
 class Music(commands.Cog):
@@ -77,7 +76,7 @@ class Music(commands.Cog):
             state.playlist = []
             state.now_playing = None
         else:
-            raise commands.CommandError("Not in a voice channel.")
+            raise commands.CommandError("Não está em um canal de voz.")
 
     @commands.command(aliases=["resume", "p"])
     @commands.guild_only()
@@ -158,7 +157,7 @@ class Music(commands.Cog):
         if (float(len(state.skip_votes)) /
                 users_in_channel) >= self.config["vote_skip_ratio"]:
             # enough members have voted to skip, so skip the song
-            logging.info(f"Enough votes, skipping...")
+            logging.info(f"Votos suficientes, pulando...")
             channel.guild.voice_client.stop()
 
     def _play_song(self, client, state, song):

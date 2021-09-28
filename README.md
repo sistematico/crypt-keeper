@@ -48,13 +48,13 @@ From the bot's `help` command:
 ```
 Meta:
   uptime Tells how long the bot has been running.
-Music:
-  leave  Leaves the voice channel, if currently in one.
-  play   Plays audio from <url>.
-Tips:
-  tip    Get a random tip about using the bot.
-​No Category:
-  help   Shows this message
+Musica:
+  sair   Leaves the voice channel, if currently in one.
+  tocar  Plays audio from <url>.
+Dicas:
+  dica   Get a random tip about using the bot.
+Sem categoria:
+  ajuda  Mostra essa mensagem
 ```
 
 ## Contributing
