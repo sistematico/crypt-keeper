@@ -20,7 +20,6 @@ class Upload(commands.Cog):
             else:
                 await message.channel.send('Formato inválido.')
 
-
             #await message.channel.send(filename)
             # await clear_soundboard()
         return
