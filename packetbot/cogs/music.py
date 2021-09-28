@@ -186,6 +186,17 @@ class Music(commands.Cog):
         message = await ctx.send("", embed=state.now_playing.get_embed())
         await self._add_reaction_controls(message)
 
+    @commands.command(aliases=["up"])
+    async def uploadmp3(self, ctx):
+        if len(ctx.message.attachments) > 0:
+            filename = ''.join(e for e in ctx.message.attachments[0].filename if e.isalnum())
+            filename.lower()
+            # save the mp3 file
+            # await context.message.attachments[0].save(mp3_file_name)
+            await ctx.message.channel.send(filename.lower())
+            # await clear_soundboard()
+        return
+
     @commands.command(aliases=["q", "playlist"])
     @commands.guild_only()
     @commands.check(audio_playing)

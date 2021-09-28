@@ -26,8 +26,8 @@ class Reply(commands.Cog):
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             await message.channel.send(random.choice([
                 '@{0.author} Olá!', 
-                '@{0.name} Oi, tudo bom?', 
-                '@{0.author} E aí! Blza?'
+                '@{0.username} Oi, tudo bom?', 
+                '@{0.user.name} E aí! Blza?'
             ]).format(message))
             return
 
