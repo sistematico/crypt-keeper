@@ -215,7 +215,7 @@ class Music(commands.Cog):
             ]  # add individual songs
             return "\n".join(message)
         else:
-            return "The play queue is empty."
+            return "A fila está vazia."
 
     @commands.command(aliases=["cq"])
     @commands.guild_only()
