@@ -23,14 +23,14 @@ class Reply(commands.Cog):
             return
 
         if any(x in message.content.lower() for x in ['frase do dia']):
-            await message.channel.send('<@{0.author}> ' + random.choice(list(open('txt/confucio.txt','r'))))
+            await message.channel.send('<@{0.author.name}> '.format(message) + random.choice(list(open('txt/confucio.txt','r'))))
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             await message.channel.send(random.choice([
-                '<@{0.author}> Olá!', 
-                '<@{0.username}> Oi, tudo bom?', 
-                '<@{0.user.name}> E aí! Blza?'
+                '<@{0.author.name}> Olá!', 
+                '<@{0.user.name}> Oi, tudo bom?', 
+                '<@{0.username}> E aí! Blza?'
             ]).format(message))
             return
 
