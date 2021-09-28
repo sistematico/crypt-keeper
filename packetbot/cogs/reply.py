@@ -25,7 +25,7 @@ class Reply(commands.Cog):
         if any(x in message.content.lower() for x in ['frase do dia']):
             await ctx.send(f"hello, {ctx.author.name}")
             frase_do_dia = random.choice(list(open('txt/confucio.txt','r')))
-            await message.channel.send("{0.author} {frase_do_dia}".format(message))
+            await message.channel.send("{0.author.name} {frase_do_dia}".format(message))
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
