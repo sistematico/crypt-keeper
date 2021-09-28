@@ -17,9 +17,12 @@ class Reply(commands.Cog):
             return
 
         if any(x in message.content.lower() for x in ['frase do dia']) or message.content.startswith('@frase'):
+
             frase = random.choice(list(open('txt/frases.txt','r')))
             await message.channel.send(f"<@!{message.author.id}> {frase}")
             #await message.channel.send("<@!" + message.author.name + "> " + frase)
+
+            await message.delete(message)
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             saudacao = random.choice(['Olá!', 'Oi, tudo bom?', 'E aí! Blza?'])
