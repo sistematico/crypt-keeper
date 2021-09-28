@@ -15,6 +15,9 @@ class Reply(commands.Cog):
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
+        
+        if len(message.attachments) > 0:
+            return
 
         if message.content.startswith('!'):
             return

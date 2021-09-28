@@ -110,3 +110,6 @@ config.toml
 # .vscode editor files
 .vscode
 .commit
+
+uploads
+!uploads/.gitkeep
