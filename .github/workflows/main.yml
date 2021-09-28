@@ -1,4 +1,4 @@
-name: PacketBot
+name: CryptKeeper
 
 on: [push]
 
@@ -28,4 +28,4 @@ jobs:
         script: |
           cd ${{ secrets.PROJECT_PATH }}
           git pull
-          #sudo /usr/bin/systemctl restart packetbot
+          #sudo /usr/bin/systemctl restart cryptkeeper

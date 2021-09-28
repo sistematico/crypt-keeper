@@ -6,9 +6,9 @@ After=multi-user.target
 Type=idle
 #Restart=always
 Restart=on-failure
-User=packetbot
-WorkingDirectory=/var/packetbot/bot
-ExecStart=/usr/local/bin/pipenv run python3 -m packetbot 2>&1
+User=cryptkeeper
+WorkingDirectory=/var/cryptkeeper/bot
+ExecStart=/usr/local/bin/pipenv run python3 -m cryptkeeper 2>&1
 #StandardInput=tty-force
 
 [Install]
