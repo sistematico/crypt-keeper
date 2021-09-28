@@ -15,7 +15,6 @@ class Util(commands.Cog):
                 await message.channel.send('As mensagens foram apagadas.'.format(deleted))
             elif not message.author.permissions_in(message.channel).manage_messages:
                 await message.channel.send(f"{message.author.name} você precisa de permissões para apagar as mensagens em massa.")
-            
-            return
+        return
 
         await self.bot.process_commands(message)

@@ -21,12 +21,10 @@ class Reply(commands.Cog):
             #await message.channel.send(message.author.id)
             #await message.channel.send(message.author.name)
             await message.channel.send("<@" + message.author.id + "> " + frase)
-            return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             saudacao = random.choice(['Olá!', 'Oi, tudo bom?', 'E aí! Blza?'])
             await message.channel.send(saudacao)
-            return
 
         # use self.bot instead of self.client
         await self.bot.process_commands(message)
