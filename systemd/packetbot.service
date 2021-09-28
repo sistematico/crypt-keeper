@@ -4,7 +4,8 @@ After=multi-user.target
 
 [Service]
 Type=idle
-Restart=always
+#Restart=always
+Restart=on-failure
 User=packetbot
 WorkingDirectory=/var/packetbot/bot
 ExecStart=/usr/local/bin/pipenv run python3 -m packetbot 2>&1
