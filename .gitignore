@@ -112,5 +112,6 @@ config.toml
 .commit
 
 uploads/*
-!.gitkeep
+
+!**/*.gitkeep
 !.gitignore

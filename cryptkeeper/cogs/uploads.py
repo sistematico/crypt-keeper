@@ -14,9 +14,12 @@ class Upload(commands.Cog):
             #filename = ''.join(e for e in ctx.message.attachments[0].filename if e.isalnum())
             filename = message.attachments[0].filename.replace('/(?:\.(?![^.]+$)|[^\w.])+/g', '-').lower()
 
-            if filename.endswith('.jpg'): # Checks if it is a .csv file
-                await message.attachments[0].save('uploads/' + filename)
-                await message.channel.send(filename)
+            if filename.endswith('.jpg') or filename.endswith('.png') or filename.endswith('.gif'):
+                await message.attachments[0].save('uploads/imagens/' + filename)
+                await message.channel.send('Arquivo: `' + filename + '` enviado com sucesso.')
+            if filename.endswith('.mp3'):
+                await message.attachments[0].save('uploads/audio/' + filename)
+                await message.channel.send('Arquivo: `' + filename + '` enviado com sucesso.')
             else:
                 await message.channel.send('Formato inválido.')
 

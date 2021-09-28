@@ -16,6 +16,14 @@ See https://stackoverflow.com/questions/43218292/youtubedl-read-error-with-disco
 Also, https://ffmpeg.org/ffmpeg-protocols.html for command line option reference.
 """
 
+async def not_playing(ctx):
+    """Checks that audio is not currently playing before continuing."""
+    client = ctx.guild.voice_client
+    if not client:
+        return True
+    else:
+        raise commands.CommandError("O bot está tocando uma música.")
+
 async def audio_playing(ctx):
     """Checks that audio is currently playing before continuing."""
     client = ctx.guild.voice_client
@@ -78,7 +86,7 @@ class Music(commands.Cog):
         else:
             raise commands.CommandError("Não está em um canal de voz.")
 
-    @commands.command(aliases=["resume", "p"])
+    @commands.command(aliases=["resume"])
     @commands.guild_only()
     @commands.check(audio_playing)
     @commands.check(in_voice_channel)
@@ -163,8 +171,7 @@ class Music(commands.Cog):
     def _play_song(self, client, state, song):
         state.now_playing = song
         state.skip_votes = set()  # clear skip votes
-        source = discord.PCMVolumeTransformer(
-            discord.FFmpegPCMAudio(song.stream_url, before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
+        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(song.stream_url, before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
 
         def after_playing(err):
             if len(state.playlist) > 0:
@@ -310,6 +317,61 @@ class Music(commands.Cog):
         CONTROLS = ["⏮", "⏯", "⏭"]
         for control in CONTROLS:
             await message.add_reaction(control)
+
+    @commands.command(aliases=["p"])
+    @commands.guild_only()
+    @commands.check(not_playing)
+    async def local_play(self, ctx, *, arquivo):
+        # Gets voice channel of message author
+        # voice_channel = ctx.author.channel
+        # channel = None
+        # if voice_channel != None:
+        #     channel = voice_channel.name
+        #     vc = await voice_channel.connect()
+        #     vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source="C:<path_to_file>"))
+        #     # Sleep while audio is playing.
+        #     while vc.is_playing():
+        #         sleep(.1)
+        #     await vc.disconnect()
+        # else:
+        #     await ctx.send(str(ctx.author.name) + "is not in a channel.")
+        # # Delete command after the audio is done playing.
+        # await ctx.message.delete()
+
+
+
+
+
+        client = ctx.guild.voice_client
+        state = self.get_state(ctx.guild)  # get the guild's state
+
+        if ctx.author.voice is not None and ctx.author.voice.channel is not None:
+            channel = ctx.author.voice.channel
+            client = await channel.connect()
+
+            try:
+                source = discord.FFmpegPCMAudio('audio/' + str(arquivo) + '.mp3')
+                client.play(source)
+            except IOError:
+                await ctx.send(str(ctx.author.name) + f" o arquivo {arquivo} é inválido.")
+                # print("File not accessible")
+            finally:
+                await ctx.message.delete()
+                
+
+
+
+            # vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source="C:<path_to_file>"))
+            # source = discord.FFmpegPCMAudio(song.stream_url)
+            # client.play(source)
+            # await ctx.message.delete()
+
+            # self._play_song(client, state, video)
+            # message = await ctx.send("", embed=video.get_embed())
+            # await self._add_reaction_controls(message)
+            # logging.info(f"Tocando agora '{video.title}'")
+        else:
+            raise commands.CommandError("Você precisa estar em um canal de voz para isso.")
 
 
 class GuildState:

@@ -19,7 +19,7 @@ class Reply(commands.Cog):
         if any(x in message.content.lower() for x in ['frase do dia']) or message.content.startswith('@frase'):
 
             frase = random.choice(list(open('txt/frases.txt','r')))
-            await message.channel.send(f"<@!{message.author.id}> {frase}")
+            await message.channel.send(f"<@!{message.author.id}>\n```\n{frase}\n```")
             #await message.channel.send("<@!" + message.author.name + "> " + frase)
 
             await message.delete(message)
