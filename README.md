@@ -10,7 +10,7 @@ Este bot utiliza a biblioteca Discord.py, YoutubeDL e ffmpeg. Use `ajuda` para r
 O que você precisa fazer para começar rapidamente é:
 
 1. Clonar este repositório usando o site do GitHub ou uma ferramenta CLI do GitHub/git.
-2. Instalar o `pipenv`, o gerenciador de dependências do Python, e se necessário, garante que os pacotes `opus` e `ffmpeg` estão instalados no servidor e disponíveis no seu ambiente de desenvolvimento. Both are used for media streaming.
+2. Instalar o `pipenv`, o gerenciador de dependências do Python, e se necessário, garante que os pacotes `opus` e `ffmpeg` estão instalados no servidor e disponíveis no seu ambiente de desenvolvimento. Ambos são usados para streaming de mídia.
 3. Navigate into the project directory and run `pipenv install` to install dependencies.
 4. Activate the Pipenv using `pipenv shell`. Run the bot using `python -m cryptkeeper`.
 5. On first startup, a default `config.toml` will be generated without an API token, so the bot will abort complaining that `No token has been provided.` Fill your bot's token into `config.toml`.
