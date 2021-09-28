@@ -13,25 +13,19 @@ class Reply(commands.Cog):
         self.bot.add_listener(self.on_message, "on_message")
 
     async def on_message(self, message):
-        if message.author == self.bot.user:
-            return
-        
-        if len(message.attachments) > 0:
-            return
-
-        if message.content.startswith('!'):
+        if len(message.attachments) > 0 or message.content.startswith('!') or message.content.startswith('@') or message.author == self.bot.user:
             return
 
         if any(x in message.content.lower() for x in ['frase do dia']) or message.content.startswith('@frase'):
             frase = random.choice(list(open('txt/frases.txt','r')))
             #await message.channel.send(message.author.id)
             #await message.channel.send(message.author.name)
-            await message.channel.send("<@{message.author.id}> {frase}".format())
+            await message.channel.send("<@{message.author.id}> {frase}".format(message))
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             saudacao = random.choice(['Olá!', 'Oi, tudo bom?', 'E aí! Blza?'])
-            await message.channel.send("{message.author.name} {saudacao}".format())
+            await message.channel.send(saudacao)
             return
 
         # use self.bot instead of self.client
