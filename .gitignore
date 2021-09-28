@@ -111,15 +111,15 @@ config.toml
 .vscode
 .commit
 
-uploads/
+#uploads/
 
-uploads/audio/*/
-!uploads/audio/.gitkeep
+#uploads/audio/
+#!uploads/audio/.gitkeep
 
-uploads/imagens/*/
-!uploads/imagens/.gitkeep
+#uploads/imagens/
+#!uploads/imagens/.gitkeep
 
-!.gitignore
-!.gitkeep
+#!.gitignore
+#!.gitkeep
 #!uploads/audio/.gitkeep
 #!uploads/imagens/.gitkeep
