@@ -23,22 +23,16 @@ class Reply(commands.Cog):
             return
 
         if any(x in message.content.lower() for x in ['frase do dia']) or message.content.startswith('@frase'):
-            #await message.channel.send("{message.author.id} {message.author.name}".format(message))
-            await message.channel.send(message.author.id)
-            #await message.channel.send(message.author)
+            frase = random.choice(list(open('txt/frases.txt','r')))
+            #await message.channel.send(message.author.id)
             #await message.channel.send(message.author.name)
-            #frase_do_dia = random.choice(list(open('txt/confucio.txt','r')))
-            #await message.channel.send("{0.author.name} {frase_do_dia}".format(message))
-            #await message.channel.send("{0.author.name} {frase_do_dia}".format(message))
+            await message.channel.send("<@{message.author.id}> {frase}".format(message))
             return
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             saudacao = random.choice(['Olá!', 'Oi, tudo bom?', 'E aí! Blza?'])
-            await message.channel.send("{message.author} {saudacao}".format(message))
+            await message.channel.send("{message.author.name} {saudacao}".format(message))
             return
-
-        # if 'olá' in message.content.lower():
-        # if message.content.startswith('hello'):
 
         # use self.bot instead of self.client
         await self.bot.process_commands(message)
