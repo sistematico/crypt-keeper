@@ -16,22 +16,10 @@ class Reply(commands.Cog):
         if len(message.attachments) > 0 or message.content.startswith('!') or message.content.startswith('@') or message.author == self.bot.user:
             return
 
-        if message.content.startswith('/teste'):
-            #await message.channel.send(message.author.id)
-            await message.channel.send(f"<@!{message.author.id}>")
-
-        if message.content.startswith('@teste'):
-            #await message.channel.send(message.author.id)
-            await message.channel.send(f"<@!{message.author.name}>")
-
-        if message.content.startswith('*teste'):
-            #await message.channel.send(message.author.id)
-            await message.channel.send("<@!" + message.author.name + "> " + frase)
-
         if any(x in message.content.lower() for x in ['frase do dia']) or message.content.startswith('@frase'):
             frase = random.choice(list(open('txt/frases.txt','r')))
-            #await message.channel.send(message.author.id)
-            await message.channel.send("<@!" + message.author.name + "> " + frase)
+            await message.channel.send(f"<@!{message.author.id}> {frase}")
+            #await message.channel.send("<@!" + message.author.name + "> " + frase)
 
         if any(x in message.content.lower() for x in ['oie', 'olá','e aí']):
             saudacao = random.choice(['Olá!', 'Oi, tudo bom?', 'E aí! Blza?'])
