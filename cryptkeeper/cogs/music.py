@@ -364,12 +364,15 @@ class Music(commands.Cog):
     @commands.command(aliases=["la", "ls", "lista", "listar", "listagem"])
     async def list(self, ctx):
         try:
-            files_no_ext = [".".join(f.split(".")[:-1]) for f in os.listdir('uploads/audio/') if os.path.isfile(f)]
+            #files_no_ext = [".".join(f.split(".")[:-1]) for f in os.listdir('uploads/audio/') if os.path.isfile(f)]
             #s = ""
             #for f in os.listdir('uploads/audio/'):
             #    if os.path.isfile(f):
             #        s += "- " + ".".join(f.split(".")[:-1]) + "\n"
-            await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{files_no_ext}\n```")
+
+            files = [os.path.splitext(filename)[0] for filename in os.listdir('uploads/audio/')]
+            print (files)
+            await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{str(files_no_ext)}\n```")
         except:
             await ctx.send(str(ctx.author.name) + f" Houve um erro ao exibir a listagem de arquivos.")
         finally:
