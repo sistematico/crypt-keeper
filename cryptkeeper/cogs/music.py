@@ -368,7 +368,7 @@ class Music(commands.Cog):
             files = [os.path.splitext(filename)[0] for filename in os.listdir('uploads/audio/') if os.path.isfile(filename)]
             s = ""
             for f in files:
-                s += f"- {f}\n"
+                s = s + f"- {f}\n"
 
             print(s)
             #print (files)
