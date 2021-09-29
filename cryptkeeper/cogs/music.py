@@ -365,18 +365,19 @@ class Music(commands.Cog):
     async def list(self, ctx):
         try:
             #files_no_ext = [".".join(f.split(".")[:-1]) for f in os.listdir('uploads/audio/') if os.path.isfile(f)]
-            files = [os.path.splitext(filename)[0] for filename in os.listdir('uploads/audio/') if os.path.isfile(filename)]
-            s = ""
-            for f in files:
-                s = s + f"- {f}\n"
+            files = [os.path.splitext(filename)[0] for filename in os.listdir('uploads/audio/') if os.path.isfile(filename) and filename not '.gitignore']
+            #s = ""
+            #for f in files:
+            #    s = s + f"- {f}\n"
 
-            print(s)
+            arquivos = '\n'.join(files)
+            #print(s)
             #print (files)
-            await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{s}\n```")
+            await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{arquivos}\n```")
         except:
             await ctx.send(str(ctx.author.name) + f" Houve um erro ao exibir a listagem de arquivos.")
-        finally:
-            await ctx.message.delete()
+        #finally:
+        #    await ctx.message.delete()
 
 class GuildState:
     """Helper class managing per-guild state."""
