@@ -372,7 +372,7 @@ class Music(commands.Cog):
 
             print(s)
             #print (files)
-            await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{str(files_no_ext)}\n```")
+            await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{s}\n```")
         except:
             await ctx.send(str(ctx.author.name) + f" Houve um erro ao exibir a listagem de arquivos.")
         finally:
