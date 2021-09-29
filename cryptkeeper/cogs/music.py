@@ -372,7 +372,9 @@ class Music(commands.Cog):
             #for f in files:
             #    s = s + f"- {f}\n"
 
-            arquivos = '\n'.join(files)
+
+            print(files)
+            arquivos = ''.join(files)
             #print(s)
             #print (files)
             await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{arquivos}\n```")
