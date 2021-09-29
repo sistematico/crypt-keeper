@@ -368,7 +368,7 @@ class Music(commands.Cog):
             if os.path.isfile(f):
                 s += "- " + ".".join(f.split(".")[:-1]) + "\n"
 
-        await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n{s}")
+        await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n```\n{s}\n```")
 
 class GuildState:
     """Helper class managing per-guild state."""
