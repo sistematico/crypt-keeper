@@ -319,7 +319,6 @@ class Music(commands.Cog):
             await message.add_reaction(control)
 
     @commands.command(aliases=["p"])
-    @commands.guild_only()
     @commands.check(not_playing)
     async def local_play(self, ctx, *, arquivo):
         # Gets voice channel of message author
@@ -340,8 +339,6 @@ class Music(commands.Cog):
 
 
 
-
-
         client = ctx.guild.voice_client
         state = self.get_state(ctx.guild)  # get the guild's state
 
@@ -352,27 +349,26 @@ class Music(commands.Cog):
             try:
                 source = discord.FFmpegPCMAudio('uploads/audio/' + str(arquivo) + '.mp3')
                 client.play(source)
+                while client.is_playing():
+                    sleep(.1)
+                await client.disconnect()
             except IOError:
                 await ctx.send(str(ctx.author.name) + f" o arquivo {arquivo} é inválido.")
-                # print("File not accessible")
             finally:
                 await ctx.message.delete()
-                
-
-
-
-            # vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source="C:<path_to_file>"))
-            # source = discord.FFmpegPCMAudio(song.stream_url)
-            # client.play(source)
-            # await ctx.message.delete()
-
-            # self._play_song(client, state, video)
-            # message = await ctx.send("", embed=video.get_embed())
-            # await self._add_reaction_controls(message)
             # logging.info(f"Tocando agora '{video.title}'")
         else:
             raise commands.CommandError("Você precisa estar em um canal de voz para isso.")
 
+    @commands.command(aliases=["la", "ls", "lista", "listar", "listagem"])
+    async def list(self, ctx):
+        #files_no_ext = [".".join(f.split(".")[:-1]) for f in os.listdir('uploads/audio/') if os.path.isfile(f)]
+        s = ""
+        for f in os.listdir('uploads/audio/'):
+            if os.path.isfile(f):
+                s += "- " + ".".join(f.split(".")[:-1]) + "\n"
+
+        await ctx.send(str(ctx.author.name) + f": Listagem de arquivos:\n{s}")
 
 class GuildState:
     """Helper class managing per-guild state."""
