@@ -363,6 +363,8 @@ class Music(commands.Cog):
 
     @commands.command(aliases=["la", "ls", "lista", "listar", "listagem"])
     async def list(self, ctx):
+        await ctx.message.delete()
+        
         try:
             #files_no_ext = [".".join(f.split(".")[:-1]) for f in os.listdir('uploads/audio/') if os.path.isfile(f)]
             files = [os.path.splitext(filename)[0] for filename in os.listdir('uploads/audio/') if os.path.isfile(filename) and filename not '.gitignore']
