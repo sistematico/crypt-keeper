@@ -55,7 +55,7 @@ Musica:
 Dicas:
   dica   Get a random tip about using the bot.
 Sem categoria:
-  ajuda  Mostra essa mensagem
+  help  Mostra essa mensagem
 ```
 
 ## Contributing
