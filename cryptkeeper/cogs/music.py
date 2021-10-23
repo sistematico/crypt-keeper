@@ -330,8 +330,8 @@ class Music(commands.Cog):
             client = await channel.connect()
 
         try:
-            # source = discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3')
-            source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
+            source = discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3')
+            #source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
             client.play(source, after=after_playing)
             # client.play(source)
             while client.is_playing():
