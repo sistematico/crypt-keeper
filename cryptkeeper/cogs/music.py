@@ -327,19 +327,20 @@ class Music(commands.Cog):
 
         if client.author.voice is not None and client.author.voice.channel is not None:
             channel = client.author.voice.channel
-            client = await channel.connect()
+            # client = await channel.connect()
 
         try:
             source = discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3')
             #source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
-            client.play(source, after=after_playing)
-            # client.play(source)
+            # client.play(source, after=after_playing)
+            client.play(source)
             while client.is_playing():
                 sleep(.1)
         except IOError:
             await client.send(str(client.author.name) + f" o arquivo {song} é inválido.")
         finally:
             await client.message.delete()
+            await client.disconnect()
             logging.info(f"Tocando agora '{video.title}'")
 
 
