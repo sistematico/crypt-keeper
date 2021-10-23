@@ -320,7 +320,29 @@ class Music(commands.Cog):
 
     @commands.command(aliases=["p"])
     @commands.check(not_playing)
-    async def local_play(self, client, state, song):
+    async def local_play(self, client, *, song):
+
+        def after_playing(err):
+            client.disconnect()
+
+        if client.author.voice is not None and client.author.voice.channel is not None:
+            channel = client.author.voice.channel
+            client = await channel.connect()
+
+        try:
+            # source = discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3')
+            source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
+            client.play(source, after=after_playing)
+            # client.play(source)
+            while client.is_playing():
+                sleep(.1)
+        except IOError:
+            await client.send(str(client.author.name) + f" o arquivo {song} é inválido.")
+        finally:
+            await client.message.delete()
+            logging.info(f"Tocando agora '{video.title}'")
+
+
     # async def local_play(self, ctx, *, arquivo):
         # Gets voice channel of message author
         # voice_channel = ctx.author.channel
@@ -346,11 +368,10 @@ class Music(commands.Cog):
         # source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(song.stream_url, before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
         
         # source = discord.FFmpegPCMAudio(('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
-        client.play(source, after=after_playing)
+        # source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
+        # client.play(source, after=after_playing)
 
-        def after_playing(err):
-            client.disconnect()
+
 
 
 
