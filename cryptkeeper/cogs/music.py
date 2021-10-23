@@ -179,8 +179,7 @@ class Music(commands.Cog):
                 next_song = state.playlist.pop(0)
                 self._play_song(client, state, next_song)
             else:
-                asyncio.run_coroutine_threadsafe(client.disconnect(),
-                                                 self.bot.loop)
+                asyncio.run_coroutine_threadsafe(client.disconnect(), self.bot.loop)
 
         client.play(source, after=after_playing)
 
@@ -321,7 +320,8 @@ class Music(commands.Cog):
 
     @commands.command(aliases=["p"])
     @commands.check(not_playing)
-    async def local_play(self, ctx, *, arquivo):
+    async def local_play(self, client, state, song):
+    # async def local_play(self, ctx, *, arquivo):
         # Gets voice channel of message author
         # voice_channel = ctx.author.channel
         # channel = None
@@ -340,26 +340,46 @@ class Music(commands.Cog):
 
 
 
-        client = ctx.guild.voice_client
-        state = self.get_state(ctx.guild)  # get the guild's state
+        # def _play_song(self, client, state, song):
+        # state.now_playing = song
+        # state.skip_votes = set()  # clear skip votes
+        # source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(song.stream_url, before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
+        
+        # source = discord.FFmpegPCMAudio(('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
+        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
+        client.play(source, after=after_playing)
 
-        if ctx.author.voice is not None and ctx.author.voice.channel is not None:
-            channel = ctx.author.voice.channel
-            client = await channel.connect()
+        def after_playing(err):
+            client.disconnect()
 
-            try:
-                source = discord.FFmpegPCMAudio('uploads/audio/' + str(arquivo) + '.mp3')
-                client.play(source)
-                while client.is_playing():
-                    sleep(.1)
-                await client.disconnect()
-            except IOError:
-                await ctx.send(str(ctx.author.name) + f" o arquivo {arquivo} é inválido.")
-            finally:
-                await ctx.message.delete()
-            # logging.info(f"Tocando agora '{video.title}'")
-        else:
-            raise commands.CommandError("Você precisa estar em um canal de voz para isso.")
+
+
+
+
+
+
+
+
+        # client = ctx.guild.voice_client
+        # state = self.get_state(ctx.guild)  # get the guild's state
+
+        # if ctx.author.voice is not None and ctx.author.voice.channel is not None:
+        #     channel = ctx.author.voice.channel
+        #     client = await channel.connect()
+
+        #     try:
+        #         source = discord.FFmpegPCMAudio('uploads/audio/' + str(arquivo) + '.mp3')
+        #         client.play(source)
+        #         while client.is_playing():
+        #             sleep(.1)
+        #         await client.disconnect()
+        #     except IOError:
+        #         await ctx.send(str(ctx.author.name) + f" o arquivo {arquivo} é inválido.")
+        #     finally:
+        #         await ctx.message.delete()
+        #     # logging.info(f"Tocando agora '{video.title}'")
+        # else:
+        #     raise commands.CommandError("Você precisa estar em um canal de voz para isso.")
 
     @commands.command(aliases=["la", "ls", "lista", "listar", "listagem"])
     async def list(self, ctx):
