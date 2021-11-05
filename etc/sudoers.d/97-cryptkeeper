@@ -1,0 +1,1 @@
+cryptkeeper ALL = (root) NOPASSWD: /usr/bin/systemctl start cryptkeeper, /usr/bin/systemctl restart cryptkeeper, /usr/bin/systemctl stop cryptkeeper
