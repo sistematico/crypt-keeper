@@ -5,7 +5,7 @@ from .cogs import music, error, meta, tips, reply, uploads, utils
 from . import config
 
 #TOKEN = environ.get('TOKEN')
-TOKEN = os.environ.get('DISCORD_TOKEN', 'ODgyNjcyNjM0ODMwMTI3MTY0.G7fEIQ.r-csjkN3zTUFC_IhOQUYnvw7xNUJ0WlcSJH19Q')
+TOKEN = os.environ.get('DISCORD_TOKEN')
 cfg = config.load_config()
 bot = commands.Bot(command_prefix=cfg["prefix"])
 
