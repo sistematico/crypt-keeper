@@ -5,7 +5,7 @@ EXAMPLE_CONFIG = """
 \"prefix\"=\"!\" # prefix used to denote commands
 
 [music]
-# Opções para comandos de música
+# Opcoes para comandos de musica
 "max_volume"=250 # Max audio volume. Set to -1 for unlimited.
 "vote_skip"=true # whether vote-skipping is enabled
 "vote_skip_ratio"=0.5 # the minimum ratio of votes needed to skip a song
@@ -21,7 +21,7 @@ def load_config(path="./config.toml"):
         return config
     else:
         # open("u.item", encoding="utf-8") with open('u.item', encoding = "ISO-8859-1")
-        with open(path, "w", encoding = "ISO-8859-1") as config:
+        with open(path, "w") as config:
             config.write(EXAMPLE_CONFIG)
             logging.warn(f"Nenhum arquivo de config encontrado. Criando um em {path}")
         return load_config(path=path)

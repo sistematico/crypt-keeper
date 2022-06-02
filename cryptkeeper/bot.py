@@ -1,11 +1,11 @@
 #import discord
 import logging, sys, os
 from discord.ext import commands
-from cogs import music, error, meta, tips, reply, uploads, utils
-import config
+from .cogs import music, error, meta, tips, reply, uploads, utils
+from . import config
 
 #TOKEN = environ.get('TOKEN')
-TOKEN = os.environ.get('DISCORD_TOKEN')
+TOKEN = os.environ.get('DISCORD_TOKEN', 'ODgyNjcyNjM0ODMwMTI3MTY0.G7fEIQ.r-csjkN3zTUFC_IhOQUYnvw7xNUJ0WlcSJH19Q')
 cfg = config.load_config()
 bot = commands.Bot(command_prefix=cfg["prefix"])
 
@@ -21,7 +21,7 @@ def add_cogs(bot):
 
 def run():
     add_cogs(bot)
-    if cfg["token"] == "":
+    if TOKEN == "":
         raise ValueError("Nenhum token fornecido. Por favor verifique se o arquivo config.toml contem o token do bot.")
         sys.exit(1)
     bot.run(TOKEN)
