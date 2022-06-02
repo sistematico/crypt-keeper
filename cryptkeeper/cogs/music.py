@@ -7,7 +7,7 @@ import youtube_dl
 import logging
 import math
 #from urllib import request
-# sys.path.append("..")
+sys.path.append("..")
 from .. import video
 
 # TODO: abstract FFMPEG options into their own file?
