@@ -119,3 +119,6 @@ venv.bak/
 #!.gitkeep
 #!uploads/audio/.gitkeep
 #!uploads/imagens/.gitkeep
+
+*.m4a
+*.mp3

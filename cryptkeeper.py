@@ -57,7 +57,7 @@ def is_connected(ctx):
 
 client = commands.Bot(command_prefix='!')
 
-status = ['Pronto pra tocar música!', 'Jogando!', 'Dormindo!']
+status = ['Counter-Strike: Source', 'Among Us', 'PlayerUnknown\'s Battlegrounds']
 queue = []
 loop = False
 
