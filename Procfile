@@ -1,1 +1,1 @@
-worker: python cryptkeeper/bot.py
+worker: python cryptkeeper.py
