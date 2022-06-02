@@ -1,14 +1,20 @@
-import os, sys
 from time import sleep
 from discord.ext import commands
-import discord
-import asyncio
-import youtube_dl
-import logging
-import math
-#from urllib import request
-sys.path.append("..")
-from video import Video
+import sys, os, discord, asyncio, youtube_dl, logging, math
+
+# getting the name of the directory
+# where the this file is present.
+current = os.path.dirname(os.path.realpath(__file__))
+  
+# Getting the parent directory name
+# where the current directory is present.
+parent = os.path.dirname(current)
+  
+# adding the parent directory to 
+# the sys.path.
+sys.path.append(parent)
+
+import video as vd
 
 # TODO: abstract FFMPEG options into their own file?
 FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
@@ -248,7 +254,7 @@ class Music(commands.Cog):
 
         if client and client.channel:
             try:
-                video = Video(url, ctx.author)
+                video = vd.Video(url, ctx.author)
             except youtube_dl.DownloadError as e:
                 logging.warn(f"Erro ao baixar o vídeo: {e}")
                 await ctx.send("Houve um erro ao baixar seu vídeo, desculpe.")
@@ -260,7 +266,7 @@ class Music(commands.Cog):
             if ctx.author.voice is not None and ctx.author.voice.channel is not None:
                 channel = ctx.author.voice.channel
                 try:
-                    video = Video(url, ctx.author)
+                    video = vd.Video(url, ctx.author)
                 except youtube_dl.DownloadError as e:
                     await ctx.send("Houve um erro ao baixar seu vídeo, desculpe.")
                     return

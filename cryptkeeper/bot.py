@@ -1,10 +1,8 @@
 import logging, sys, os
 from discord.ext import commands
-sys.path.append(".")
-from cogs import music, error, meta, tips, reply, uploads, utils
+from .cogs import music, error, meta, tips, reply, uploads, utils
 import config
 
-#TOKEN = environ.get('TOKEN')
 TOKEN = os.environ.get('DISCORD_TOKEN')
 cfg = config.load_config()
 bot = commands.Bot(command_prefix='!')
