@@ -1,7 +1,8 @@
+import sys
 from discord.ext import commands
-import discord
 from datetime import datetime
-from .. import util
+sys.path.append("..")
+import util
 
 class Meta(commands.Cog):
     """Commands relating to the bot itself."""
