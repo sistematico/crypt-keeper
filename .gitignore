@@ -103,10 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# config file
-config.toml
-**/config.toml
-
 # .vscode editor files
 .vscode
 .commit

@@ -6,7 +6,7 @@ import config
 #TOKEN = environ.get('TOKEN')
 TOKEN = os.environ.get('DISCORD_TOKEN')
 cfg = config.load_config()
-bot = commands.Bot(command_prefix=cfg["prefix"])
+bot = commands.Bot(command_prefix='!')
 
 @bot.event
 async def on_ready():

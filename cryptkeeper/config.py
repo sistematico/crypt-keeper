@@ -1,4 +1,4 @@
-import os, logging, toml
+import os, toml
 
 EXAMPLE_CONFIG = """
 \"token\"=\"\" # the bot's token
@@ -19,9 +19,4 @@ def load_config(path="./config.toml"):
     if os.path.exists(path) and os.path.isfile(path):
         config = toml.load(path)
         return config
-    else:
-        # open("u.item", encoding="utf-8") with open('u.item', encoding = "ISO-8859-1")
-        with open(path, "w") as config:
-            config.write(EXAMPLE_CONFIG)
-            logging.warn(f"Nenhum arquivo de config encontrado. Criando um em {path}")
-        return load_config(path=path)
+
