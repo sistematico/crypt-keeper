@@ -8,7 +8,7 @@ import logging
 import math
 #from urllib import request
 sys.path.append("..")
-from ..video import Video
+from video import Video
 
 # TODO: abstract FFMPEG options into their own file?
 FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
