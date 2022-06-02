@@ -1,11 +1,11 @@
 #import discord
-import logging, sys
-from os import environ
+import logging, sys, os
 from discord.ext import commands
 from cogs import music, error, meta, tips, reply, uploads, utils
 import config
 
-TOKEN = environ.get('TOKEN')
+#TOKEN = environ.get('TOKEN')
+TOKEN = os.environ.get('DISCORD_TOKEN')
 cfg = config.load_config()
 bot = commands.Bot(command_prefix=cfg["prefix"])
 

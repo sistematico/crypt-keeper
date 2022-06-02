@@ -12,5 +12,5 @@ youtube-dl = "*"
 "discord.py" = "*"
 pynacl = "*"
 
-[requires]
-python_version = "3.8"
+#[requires]
+#python_version = "3.8"

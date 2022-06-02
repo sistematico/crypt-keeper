@@ -1,4 +1,5 @@
 import os, sys
+from time import sleep
 from discord.ext import commands
 import discord
 import asyncio
@@ -342,7 +343,7 @@ class Music(commands.Cog):
         finally:
             await client.message.delete()
             await client.disconnect()
-            logging.info(f"Tocando agora '{video.title}'")
+            logging.info(f"Tocando agora " + str(song))
 
 
     # async def local_play(self, ctx, *, arquivo):
