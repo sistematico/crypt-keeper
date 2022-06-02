@@ -1,7 +1,7 @@
 #import discord
 import logging, sys, os
 from discord.ext import commands
-from .cogs import music, error, meta, tips, reply, uploads, utils
+from cogs import music, error, meta, tips, reply, uploads, utils
 from . import config
 
 #TOKEN = environ.get('TOKEN')
