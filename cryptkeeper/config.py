@@ -1,8 +1,7 @@
-import toml
-import logging
-import os
+import os, logging, toml
 
-EXAMPLE_CONFIG = """\"token\"=\"\" # the bot's token
+EXAMPLE_CONFIG = """
+\"token\"=\"\" # the bot's token
 \"prefix\"=\"!\" # prefix used to denote commands
 
 [music]
@@ -21,7 +20,8 @@ def load_config(path="./config.toml"):
         config = toml.load(path)
         return config
     else:
-        with open(path, "w") as config:
+        # open("u.item", encoding="utf-8") with open('u.item', encoding = "ISO-8859-1")
+        with open(path, "w", encoding = "ISO-8859-1") as config:
             config.write(EXAMPLE_CONFIG)
             logging.warn(f"Nenhum arquivo de config encontrado. Criando um em {path}")
         return load_config(path=path)
