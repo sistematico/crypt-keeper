@@ -1,6 +1,5 @@
 from . import bot
 import logging
-from . import config
 
 if __name__ == "__main__":
     formatter = logging.Formatter(fmt="[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s")

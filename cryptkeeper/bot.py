@@ -1,10 +1,11 @@
 import discord
-import logging
-import sys
+import logging, sys
+from os import environ
 from discord.ext import commands
 from .cogs import music, error, meta, tips, reply, uploads, utils
 from . import config
 
+TOKEN = environ.get('TOKEN')
 cfg = config.load_config()
 bot = commands.Bot(command_prefix=cfg["prefix"])
 
@@ -23,4 +24,4 @@ def run():
     if cfg["token"] == "":
         raise ValueError("Nenhum token fornecido. Por favor verifique se o arquivo config.toml contem o token do bot.")
         sys.exit(1)
-    bot.run(cfg["token"])
+    bot.run(TOKEN)
