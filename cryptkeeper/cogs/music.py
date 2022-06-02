@@ -1,12 +1,13 @@
-import os
+import os, sys
 from discord.ext import commands
 import discord
 import asyncio
 import youtube_dl
 import logging
 import math
-from urllib import request
-from .. import video
+#from urllib import request
+sys.path.append("..")
+from video import Video
 
 # TODO: abstract FFMPEG options into their own file?
 FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
@@ -371,11 +372,6 @@ class Music(commands.Cog):
         # source = discord.FFmpegPCMAudio(('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
         # source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('uploads/audio/' + str(song) + '.mp3', before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
         # client.play(source, after=after_playing)
-
-
-
-
-
 
 
 
