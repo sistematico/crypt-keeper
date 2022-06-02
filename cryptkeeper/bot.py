@@ -1,9 +1,9 @@
-import discord
+#import discord
 import logging, sys
 from os import environ
 from discord.ext import commands
-from .cogs import music, error, meta, tips, reply, uploads, utils
-from . import config
+from cogs import music, error, meta, tips, reply, uploads, utils
+import config
 
 TOKEN = environ.get('TOKEN')
 cfg = config.load_config()
