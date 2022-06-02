@@ -1,5 +1,6 @@
 import logging, sys, os
 from discord.ext import commands
+sys.path.append(".")
 from cogs import music, error, meta, tips, reply, uploads, utils
 import config
 
