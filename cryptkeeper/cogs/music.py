@@ -8,7 +8,7 @@ import logging
 import math
 #from urllib import request
 sys.path.append("..")
-from .. import video
+from ..video import Video
 
 # TODO: abstract FFMPEG options into their own file?
 FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
@@ -248,7 +248,7 @@ class Music(commands.Cog):
 
         if client and client.channel:
             try:
-                video = video.Video(url, ctx.author)
+                video = Video(url, ctx.author)
             except youtube_dl.DownloadError as e:
                 logging.warn(f"Erro ao baixar o vídeo: {e}")
                 await ctx.send("Houve um erro ao baixar seu vídeo, desculpe.")
@@ -260,7 +260,7 @@ class Music(commands.Cog):
             if ctx.author.voice is not None and ctx.author.voice.channel is not None:
                 channel = ctx.author.voice.channel
                 try:
-                    video = video.Video(url, ctx.author)
+                    video = Video(url, ctx.author)
                 except youtube_dl.DownloadError as e:
                     await ctx.send("Houve um erro ao baixar seu vídeo, desculpe.")
                     return
